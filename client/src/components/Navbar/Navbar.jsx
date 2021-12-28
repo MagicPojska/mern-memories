@@ -4,6 +4,7 @@ import useStyles from "./Styles";
 import memories from "../../images/memories.png";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import decode from "jwt-decode";
 
 const Navbar = () => {
   const classes = useStyles();
@@ -23,7 +24,11 @@ const Navbar = () => {
     const token = user?.token;
 
     //JWT Here
+    if (token) {
+      const decodedToken = decode(token);
 
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+    }
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
 
