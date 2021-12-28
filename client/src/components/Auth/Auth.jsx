@@ -107,7 +107,7 @@ const Auth = () => {
               name="password"
               label="Password"
               handleChange={handleChange}
-              type={showPassword ? "password" : "text"}
+              type={showPassword ? "text" : "password"}
               handleShowPassword={handleShowPassword}
             />
             {isSignup && (
