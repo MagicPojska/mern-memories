@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { useParams, useHistory } from "react-router-dom";
 
+import { getPost } from "../../actions/posts";
+
 import useStyles from "./styles";
 
 const PostDetails = () => {
@@ -17,6 +19,18 @@ const PostDetails = () => {
   const history = useHistory();
   const classes = useStyles();
   const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(getPost(id));
+  }, [id]);
+
+  if (!post) return null;
+
+  if (isLoading) {
+    <Paper elevation={6} className={classes.loadingPaper}>
+      <CircularProgress size="7em" />
+    </Paper>;
+  }
 
   return (
     <Paper style={{ padding: "20px", borderRadius: "15px" }} elevation={6}>
