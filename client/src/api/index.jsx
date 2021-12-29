@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://mern-memories-social-app.herokuapp.com",
+  baseURL: "http://localhost:8080",
 });
 
-const url = "http://localhost:8080";
+const url = "https://mern-memories-social-app.herokuapp.com";
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
