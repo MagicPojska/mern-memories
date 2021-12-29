@@ -27,9 +27,11 @@ const PostDetails = () => {
   if (!post) return null;
 
   if (isLoading) {
-    <Paper elevation={6} className={classes.loadingPaper}>
-      <CircularProgress size="7em" />
-    </Paper>;
+    return (
+      <Paper elevation={6} className={classes.loadingPaper}>
+        <CircularProgress size="7em" />
+      </Paper>
+    );
   }
 
   return (
