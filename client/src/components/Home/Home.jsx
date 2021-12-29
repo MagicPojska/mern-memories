@@ -29,7 +29,7 @@ const Home = () => {
   const history = useHistory();
   const page = query.get("page") || 1;
   const searchQuery = query.get("searchQuery");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
@@ -37,8 +37,8 @@ const Home = () => {
   }, [dispatch]);
 
   const searchPost = () => {
-    if (searchTerm.trim()) {
-      dispatch.apply(getPostsBySearch({ search, tags: tags.join(",") }));
+    if (search.trim() || tags) {
+      dispatch(getPostsBySearch({ search, tags: tags.join(",") }));
     } else {
       history.push("/");
     }
@@ -80,8 +80,8 @@ const Home = () => {
                 label="Search Memories"
                 onKeyPress={handleKeyPress}
                 fullWidth
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
               <ChipInput
                 style={{ margin: "10px 0" }}
