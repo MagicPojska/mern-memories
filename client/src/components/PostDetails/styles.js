@@ -43,10 +43,24 @@ export default makeStyles((theme) => ({
   commentsOuterContainer: {
     display: "flex",
     justifyContent: "space-between",
+    ["@media(max-width:500px)"]: {
+      flexDirection: "column",
+    },
   },
   commentsInnerContainer: {
     height: "200px",
+    width: "70%",
     overflowY: "auto",
     marginRight: "30px",
+    ["@media(max-width:500px)"]: {
+      width: "100%",
+    },
+  },
+  postComment: {
+    width: "70%",
+    ["@media(max-width:500px)"]: {
+      width: "100%",
+      marginTop: "20px",
+    },
   },
 }));
