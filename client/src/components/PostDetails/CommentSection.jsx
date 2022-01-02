@@ -9,6 +9,7 @@ const CommentSection = ({ post }) => {
   const [comments, setComments] = useState(post?.comments);
   const dispatch = useDispatch();
   const [comment, setComment] = useState("");
+  const commentsRef = useRef();
 
   const classes = useStyles();
 
@@ -19,6 +20,8 @@ const CommentSection = ({ post }) => {
 
     setComments(newComments);
     setComment("");
+
+    commentsRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -33,6 +36,7 @@ const CommentSection = ({ post }) => {
               {c}
             </Typography>
           ))}
+          <div ref={commentsRef} />
         </div>
         {user?.result?.name && (
           <div style={{ width: "70%" }}>
