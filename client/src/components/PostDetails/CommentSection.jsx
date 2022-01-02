@@ -6,15 +6,19 @@ import { commentPost } from "../../actions/posts";
 
 const CommentSection = ({ post }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
-  const [comments, setComments] = useState([1, 2, 3, 4]);
+  const [comments, setComments] = useState(post?.comments);
   const dispatch = useDispatch();
   const [comment, setComment] = useState("");
 
   const classes = useStyles();
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const finalComment = `${user.result.name}: ${comment}`;
-    dispatch(commentPost(finalComment, post._id));
+
+    const newComments = await dispatch(commentPost(finalComment, post._id));
+
+    setComments(newComments);
+    setComment("");
   };
 
   return (
@@ -26,7 +30,7 @@ const CommentSection = ({ post }) => {
           </Typography>
           {comments?.map((c, i) => (
             <Typography key={i} gutterBottom variant="subtitle1">
-              Comment {i}
+              {c}
             </Typography>
           ))}
         </div>
