@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  // baseURL: "https://mern-memories-social-app.herokuapp.com",
-  baseURL: "http://localhost:8080",
+  baseURL: "https://mern-memories-social-app.herokuapp.com",
+  // baseURL: "http://localhost:8080",
 });
 
 API.interceptors.request.use((req) => {
